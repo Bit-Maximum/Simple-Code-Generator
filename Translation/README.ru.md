@@ -45,18 +45,18 @@ bash
 
 ## 🛠️ Как запустить
 1. Клонируйте репозиторий:
-   bash
+   ```bash
    git clone https://github.com/Bit-Maximum/Simple-Code-Generator.git
    cd Simple-Code-Generator
-
+```
 2. Установите зависимости (если используются):
-   bash
+   ```bash
    pip install -r requirements.txt
-
+```
 3. Запустите:
-   bash
+   ```bash
    python main.py
-
+```
 
 ## © Автор
 _Максим Меркурьев, 2024_
