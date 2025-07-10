@@ -1,7 +1,7 @@
 # 🧠 Simple Code Generator
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/Bit-Maximum/Simple-Code-Generator/blob/master/README.md)
-[![ru](https://img.shields.io/badge/lang-ru-blue.svg)](https://github.com/Bit-Maximum/Simple-Code-Generator/blob/master/Translation/README.ru.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/Bit-Maximum/Simple-Code-Generator/blob/main/README.md)
+[![ru](https://img.shields.io/badge/lang-ru-blue.svg)](https://github.com/Bit-Maximum/Simple-Code-Generator/blob/main/Translation/README.ru.md)
 
 > **Lab work for the course “Modern Programming Languages”**
 
