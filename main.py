@@ -4,12 +4,9 @@ from xmlrpc.client import MAXINT
 from Levenshtein import distance
 
 '''
-Шаблон 1: Напечатай все строки длины %ЦЕЛОЕ_ЧИСЛО% из нулей и единиц в лексографическом порядке на языке %[Python, C++]%
-Шаблон 2: Отсортируй список детей [%строка%, %строка%,...] по алфавитному порядку
-Шаблон 3: Используй %[Python, C++]%, чтобы сказать является ли число %ЦЕЛОЕ_ЧИСЛО% палиндромом
-Шаблон 4: Напиши скрипт для одновременной генерации %ЦЕЛОЕ_ЧИСЛО% TXT файлов из %ЦЕЛОЕ_ЧИСЛО% строк случайных целых чисел от %ЦЕЛОЕ_ЧИСЛО% до %ЦЕЛОЕ_ЧИСЛО% на %ЦЕЛОЕ_ЧИСЛО% потоков на языке %[Python, C++]%
-Шаблон 5: Используя %[Python, C++]% перейди по ссылке %URL% и проверь, встречается ли в HTML коде веб-страницы слово %СТРОКА%  
-Шаблон 6: Выведи через пробел все простые числа от %ЦЕЛОЕ_ЧИСЛО% до %ЦЕЛОЕ_ЧИСЛО% на языке %[Python, C++]%  
+Шаблон 1: Напапечатай все строки длины %ЦЕЛОЕ_ЧИСЛО% из нулей и единиц скриптом на языке %[Python, C++]%
+Шаблон 2: Напиши скрипт для одновременной генерации %ЦЕЛОЕ_ЧИСЛО% TXT файлов в столько же потоков|процессов из %ЦЕЛОЕ_ЧИСЛО% строк случайных целых чисел от %ЦЕЛОЕ_ЧИСЛО% до %ЦЕЛОЕ_ЧИСЛО% на языке %[Python, C++]%
+Шаблон 3: Выведи через пробел все простые числа от %ЦЕЛОЕ_ЧИСЛО% до %ЦЕЛОЕ_ЧИСЛО% на языке %[Python, C++]%  
 '''
 
 T1_C1 = '''
@@ -118,6 +115,8 @@ T2_P2 = '''
     with open(f"file{counter}.txt", "w+", encoding="UTF-8") as fout:
         for j in range(rows):
 '''
+
+
 T2_P3 = '''
     p.map(f, tasks)
     p.close()
@@ -166,7 +165,7 @@ if __name__ == '__main__':
         'Выведи через пробел все простые числа от %ЦЕЛОЕ_ЧИСЛО% до %ЦЕЛОЕ_ЧИСЛО% на языке %[Python, C++]%': 0
     }
 
-    userRequest = input()
+    userRequest = input("Введите запрос:\n")
     for T in templates.keys():
         templates[T] = distance(T, userRequest)
 
@@ -177,27 +176,26 @@ if __name__ == '__main__':
             m = value
             request = i
 
-    print(request)
     with open("output.txt", "w", encoding='UTF-8') as fout:
         if request == 0:
-            print("T1")
+            print("Using template №1", end=" ")
             n = int(userRequest[userRequest.find(' длин'):].split()[1])
 
             if IsCpp(userRequest):
-                print("C++")
+                print("on C++")
                 fout.write(f'\tint n = {n};'.join((T1_C1, T1_C2)))
             else:
-                print("Python")
+                print("on Python")
                 fout.write(f'    n = {n}'.join((T1_P1, T1_P2)))
 
         elif request == 1:
-            print("T2")
+            print("Using template №2", end=" ")
             file_num = int(userRequest[userRequest.find(' генерац'):].split()[1])
             row_num = int(userRequest[:userRequest.find(' строк ')].split()[-1])
             from_num = int(userRequest[userRequest.find(' от '):].split()[1])
             to_num = int(userRequest[userRequest.find(' до '):].split()[1])
             if IsCpp(userRequest):
-                print("C++")
+                print("on C++")
                 fout.write(T2_C1)
                 fout.write(f"    for (int i = 0; i < {file_num}; ++i)\n")
                 fout.write(T2_C2)
@@ -205,7 +203,7 @@ if __name__ == '__main__':
                 fout.write(f'{' ' * 8}fout << {from_num} + rand() % ({to_num} - {from_num} + 1) << endl;\n')
                 fout.write(T2_C3)
             else:
-                print("Python")
+                print("on Python")
                 fout.write(T2_P1)
                 fout.write(f"    rows = {row_num}")
                 fout.write(T2_P2)
@@ -216,16 +214,16 @@ if __name__ == '__main__':
                 fout.write(T2_P3)
 
         else:
-            print("T3")
+            print("Using template №3", end=" ")
             from_num = int(userRequest[userRequest.find(' от '):].split()[1])
             to_num = int(userRequest[userRequest.find(' до '):].split()[1])
 
             if IsCpp(userRequest):
-                print("C++")
+                print("on C++")
                 fout.write(T3_C1)
                 fout.write(f"    for (int i = {from_num}; i < {to_num + 1}; ++i)\n")
                 fout.write(T3_C2)
             else:
-                print("Python")
+                print("on Python")
                 fout.write(f"[print(x, end=' ') for x in range(2, {to_num}) if all(x % i != 0 for i in range(2, int(x**0.5) + 1)) and x > {from_num}]")
 
